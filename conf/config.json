@@ -1,13 +1,14 @@
 {
   "LocalReceiveConfigs": {
     "userName": "local_client_1",
-    "rtcPort": 7778,
-    "rtcIp": "0.0.0.0"
+    "rtcPort": 9480,
+    "rtcIp": "192.168.1.108",
+    "ssrc": 123
   },
   "RemoteSendConfigs": {
     "userName": "remote_client_1",
-    "rtcPort": 7777,
-    "rtcIp": "101.42.42.53",
+    "rtcPort": 9012,
+    "rtcIp": "192.168.1.222",
     "ssrc": 12341234
   },
   "ExperimentConfig": {
@@ -17,7 +18,7 @@
     },
     "GccExperiment": {
       "TrendLineWindowSize": 80,
-      "TrendLineThreshold": 0
+      "TrendLineThreshold": 12
     }
   }
 }
