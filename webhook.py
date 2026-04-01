@@ -23,7 +23,7 @@ CSV_FILES = {
     "1": str(BASE_DIR / "data" / "gcc_data_file_1.csv"),
     "2": str(BASE_DIR / "data" / "gcc_data_file_2.csv"),
 }
-
+print(CSV_FILES)
 
 # ===========================================================
 # Webhook（git pull）
