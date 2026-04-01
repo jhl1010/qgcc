@@ -37,7 +37,7 @@ ExperimentManager::ExperimentManager()
   this->rr_data_file_ << "TimeStamp";
 
   for (int i = 0; i < DefaultCreateColumn; i++) {
-    this->gcc_data_file_ << ",AvailableBitrate" << i << ",SentBitrate" << i;
+    this->gcc_data_file_ << ",SentBitrate" << i << ",AvailableBitrate" << i;
     this->gcc_trend_data_file_ << ",Trend" << i;
     this->rr_data_file_ << ",Jitter" << i << ",FractionLost" << i
                         << ",PacketsLost" << i << ",Rtt" << i;
