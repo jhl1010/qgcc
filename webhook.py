@@ -14,26 +14,20 @@ import asyncio
 app = FastAPI()
 
 SECRET = ""
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
 
 # 统一管理多个 CSV
 CSV_FILES = {
-    "1": "/home/sli/Bifrost/base/worker/data/gcc_data_file.csv",
-    "2": "/home/sli/Bifrost/worker/data/gcc_data_file.csv"
+    "1": str(BASE_DIR) / "data/gcc_data_file.csv",
+    "2": str(BASE_DIR) / "data/gcc_data_file.csv"
 }
 
 
 # ===========================================================
 # Webhook（git pull）
 # ===========================================================
-def verify_signature(request_body: bytes, signature: str) -> bool:
-    if not SECRET:
-        return True
-    if not signature:
-        return False
-    sha_name, sign = signature.split("=")
-    mac = hmac.new(SECRET.encode(), msg=request_body, digestmod=hashlib.sha256)
-    return hmac.compare_digest(sign, mac.hexdigest())
-
 
 @app.post("/webhook")
 async def webhook(request: Request):
