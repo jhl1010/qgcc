@@ -20,8 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent
 
 # 统一管理多个 CSV
 CSV_FILES = {
-    "1": str(BASE_DIR / "data" / "gcc_data_file_1.csv"),
-    "2": str(BASE_DIR / "data" / "gcc_data_file_2.csv"),
+    "1": str(BASE_DIR / "data" / "gcc_data_file.csv"),
+    "2": str(BASE_DIR / "data" / "gcc_data_file.csv"),
 }
 print(CSV_FILES)
 
