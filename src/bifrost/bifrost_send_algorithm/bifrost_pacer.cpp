@@ -194,11 +194,11 @@ void BifrostPacer::OnTimer(UvTimer* timer) {
       
       // gcc 的pacing
       // 2.5则是根据码率浮动的，这里如果没有使用真实的h264文件发数据，可以改小
-//      double pacing_gain =
-//          (this->pacing_congestion_windows_ > 0 && this->bytes_in_flight_ > 0
-//               ? 1.5
-//               : 2.5);
-			double pacing_gain = 1.5;
+      double pacing_gain =
+          (this->pacing_congestion_windows_ > 0 && this->bytes_in_flight_ > 0
+               ? 1.5
+               : 2.5);
+//			double pacing_gain = 1.5;
       int32_t interval_pacing_bytes =
           int32_t((pacing_rate_ * pacing_gain /* 最大浮动值2.5 */ /
                    1000) /* 转换ms */
