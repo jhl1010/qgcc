@@ -58,7 +58,7 @@ class H264FileDataProducer : public ExperimentDataProducerInterface,
         out_bitrate > MaxOutSendBitrate ? MaxOutSendBitrate : out_bitrate;
     cycle_bitrate_record_ =
 //        int32_t(out_bitrate_limit_ * interval * 0.65) / 1000 / 8;
-				int32_t(out_bitrate_limit_ * interval) / 1000 / 8;
+				int32_t(out_bitrate_limit_ * interval) * 0.8/ 1000 / 8;
   }
 
  private:
