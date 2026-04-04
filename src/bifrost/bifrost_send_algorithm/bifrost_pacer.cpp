@@ -21,6 +21,7 @@ namespace bifrost {
 constexpr uint16_t DefaultCreatePacketTimeInterval = 10u;  // 每10ms创建10个包
 constexpr uint16_t DefaultStatisticsTimerInterval = 1000u;  // 每1s统计一次
 constexpr uint16_t DefaultPacingTimeInterval = 5u;
+constexpr uint16_t DefaultBitrateStatisticsInterval = 100u;
 const uint32_t InitialPacingGccBitrate =
     0u;  // 配合当前测试的码率一半左右开始探测 780
 
@@ -49,8 +50,8 @@ BifrostPacer::BifrostPacer(uint32_t ssrc, uint32_t flexfec_ssrc,
                        DefaultCreatePacketTimeInterval);
 
   statistics_timer_ = new UvTimer(this, uv_loop->get_loop().get());
-  statistics_timer_->Start(DefaultStatisticsTimerInterval,
-                           DefaultStatisticsTimerInterval);
+  statistics_timer_->Start(DefaultBitrateStatisticsInterval,
+                           DefaultBitrateStatisticsInterval);
 
 #ifdef USE_FLEX_FEC_PROTECT
   // flexfec sender new
@@ -267,9 +268,12 @@ void BifrostPacer::OnTimer(UvTimer* timer) {
   }
 
   if (timer == statistics_timer_) {
-    pacing_bitrate_bps_ = pacing_bitrate_;
+    pacing_bitrate_bps_ =
+        pacing_bitrate_ * 1000 / DefaultBitrateStatisticsInterval;
     pacing_bitrate_ = 0;
-    last_pacing_frame_rate_ = count_pacing_frame_rate_;
+    last_pacing_frame_rate_ =
+        count_pacing_frame_rate_ * 1000.0f /
+        DefaultBitrateStatisticsInterval;
     count_pacing_frame_rate_ = 0;
   }
 }
